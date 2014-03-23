@@ -18,7 +18,7 @@ public class EmployeeManagerImpl implements EmployeeManager {
 	
 	@Override
 	public List<EmployeeDTO> getAllEmployees() {
-		List<EmployeeVO> allEmployees = employeeDAO.getAllEmployees();
+		List<EmployeeVO> allEmployees = employeeDAO.findAll();
 		
 		List<EmployeeDTO> employeeDTOList = new ArrayList<EmployeeDTO>();
 		

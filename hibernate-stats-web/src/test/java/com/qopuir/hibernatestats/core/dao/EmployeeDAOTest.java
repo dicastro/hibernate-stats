@@ -49,11 +49,24 @@ public class EmployeeDAOTest {
 	
 	@Test
 	@Transactional
-    public void list() {
+    public void findAll() {
 		dbSetupTracker.skipNextLaunch();
 		
-        List<EmployeeVO> allEmployees = employeeDAO.getAllEmployees();
+        List<EmployeeVO> allEmployees = employeeDAO.findAll();
 
         Assert.assertEquals(2, allEmployees.size());
+    }
+	
+	@Test
+	@Transactional
+    public void findById() {
+		dbSetupTracker.skipNextLaunch();
+		
+        EmployeeVO employee = employeeDAO.findById(1);
+
+        Assert.assertEquals("TEST1", employee.getFirstname());
+        Assert.assertEquals("TEST1", employee.getLastname());
+        Assert.assertEquals("TEST1@TEST1.COM", employee.getEmail());
+        Assert.assertEquals("987654321", employee.getTelephone());
     }
 }
