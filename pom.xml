@@ -16,9 +16,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
 		<spring.version>3.2.3.RELEASE</spring.version>
+		<struts.version>1.2.9</struts.version>
 		<hibernate.version>3.3.1.GA</hibernate.version>
 		<mysql.version>5.1.29</mysql.version>
 		<slf4j.version>1.7.6</slf4j.version>
+		<javasimon.version>3.4.0</javasimon.version>
 	</properties>
 
 	<dependencyManagement>
@@ -68,6 +70,49 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-struts</artifactId>
+			    <version>${spring.version}</version>
+			    <exclusions>
+			    	<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+			    </exclusions>
+			</dependency>
+			
+			<!-- aop -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.6.11</version>
+			</dependency>
+			
+			<!-- struts -->
+			<dependency>
+				<groupId>struts</groupId>
+				<artifactId>struts</artifactId>
+				<version>${struts.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>antlr</groupId>
+						<artifactId>antlr</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-beanutils</groupId>
+						<artifactId>commons-beanutils</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			
 			<!-- Hibernate -->
@@ -174,6 +219,47 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-collections4</artifactId>
 				<version>4.0</version>
+			</dependency>
+			
+			<!-- javasimon -->
+			<dependency>
+				<groupId>org.javasimon</groupId>
+				<artifactId>javasimon-core</artifactId>
+				<version>${javasimon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javasimon</groupId>
+				<artifactId>javasimon-jdbc4</artifactId>
+				<version>${javasimon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javasimon</groupId>
+				<artifactId>javasimon-spring</artifactId>
+				<version>${javasimon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javasimon</groupId>
+				<artifactId>javasimon-console-embed</artifactId>
+				<version>${javasimon.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javasimon</groupId>
+				<artifactId>javasimon-javaee</artifactId>
+				<version>${javasimon.version}</version>
+			</dependency>
+			
+			<!-- servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+			</dependency>
+			
+			<!-- jsp -->
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

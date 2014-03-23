@@ -44,6 +44,64 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>simon-console-servlet</servlet-name>
+		<servlet-class>org.javasimon.console.SimonConsoleServlet</servlet-class>
+		<init-param>
+			<param-name>url-prefix</param-name>
+			<param-value>/simon-console</param-value>
+		</init-param>
+		<init-param>
+			<param-name>plugin-classes</param-name>
+			<param-value>org.javasimon.console.plugin.CallTreeDetailPlugin</param-value>
+		</init-param>
+
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>simon-console-servlet</servlet-name>
+		<url-pattern>/simon-console/*</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>simon-filter</filter-name>
+		<filter-class>org.javasimon.javaee.SimonServletFilter</filter-class>
+		<!-- optional -->
+		<init-param>
+			<param-name>prefix</param-name>
+			<param-value>com.qopuir.hibernatestats.web.stats</param-value>
+		</init-param>
+		<!-- optional basic plain-text console
+		<init-param>
+			<param-name>console-path</param-name>
+			<param-value>/simon-console</param-value>
+		</init-param>
+		-->
+		<!-- optional, necessary when long requests should be reported -->
+		<init-param>
+			<param-name>report-threshold-ms</param-name>
+			<param-value>1000</param-value>
+		</init-param>
+		<!-- optional, used by reporting mechanism - default implementation uses Manager.message to log stuff, this goes to stdout
+		<init-param>
+			<param-name>request-reporter-class</param-name>
+			<param-value>org.javasimon.javaee.reqreporter.StandardRequestReporter</param-value>
+		</init-param>
+		-->
+		<!-- optional, used to specify parameters for StopwatchSource instance -->
+		<init-param>
+			<param-name>stopwatch-source-props</param-name>
+			<param-value>includeHttpMethodName=ALWAYS</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>simon-filter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<!--
 	<filter>
 		<filter-name>simon-console-filter</filter-name>
 		<filter-class>org.javasimon.console.SimonConsoleFilter</filter-class>
@@ -57,6 +115,7 @@
 		<filter-name>simon-console-filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
 
 	<jsp-config>
 		<taglib>

@@ -10,7 +10,17 @@
 
 	<context:component-scan base-package="com.qopuir.hibernatestats.core.dao.impl,com.qopuir.hibernatestats.core.manager.impl,com.qopuir.hibernatestats.core.bo.impl,com.qopuir.hibernatestats.core.service.impl" />
 
-	<bean id="monitoringInterceptor" class="com.qopuir.hibernatestats.stats.MonitoringLogInterceptor" />
+	<bean id="simonManager" class="org.javasimon.spring.ManagerFactoryBean">
+		<property name="callbacks">
+			<list>
+				<bean class="org.javasimon.callback.calltree.CallTreeCallback" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="monitoringInterceptor" class="com.qopuir.hibernatestats.stats.MonitoringLogInterceptor">
+		<constructor-arg name="manager" ref="simonManager" />
+	</bean>
 
 	<bean id="monitoringAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
 		<property name="advice" ref="monitoringInterceptor" />
